@@ -1,43 +1,24 @@
 package com.demo.conduit.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "articles")
+@Getter
+@Setter
 public class ArticleEntity extends BaseEntity {
-    public String slug;
-    public String description;
-    public String body;
-    public String title;
+    private String slug;
+    private String description;
+    private String body;
+    private String title;
+    private UserEntity author;
 
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    @ManyToOne(fetch = FetchType.EAGER)
+    public UserEntity getAuthor() {
+        return author;
     }
 }
